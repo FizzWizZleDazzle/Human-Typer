@@ -1,5 +1,5 @@
 # Human Typer Mimicker
-
+## Built and tested on windows, other operating systems could be buggy
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey.svg)
