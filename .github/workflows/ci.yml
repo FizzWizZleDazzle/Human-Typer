@@ -39,8 +39,8 @@ jobs:
     
     - name: Test imports
       run: |
-        python -c "import sys; sys.path.insert(0, 'src'); import human_typer; print('✓ human_typer imports successfully')"
-        python -c "import sys; sys.path.insert(0, 'src'); from human_typer import HumanTyper; print('✓ HumanTyper class imports successfully')"
+        python -c "import sys; sys.path.insert(0, 'src'); import human_typer; print('OK human_typer imports successfully')"
+        python -c "import sys; sys.path.insert(0, 'src'); from human_typer import HumanTyper; print('OK HumanTyper class imports successfully')"
     
     - name: Test basic functionality
       run: |
@@ -50,7 +50,7 @@ jobs:
         typer = HumanTyper(use_keyboard=False)
         typer.set_speed(300)
         typer.set_error_rate(0.1)
-        print('✓ Basic functionality test passed')
+        print('OK Basic functionality test passed')
         "
     
     - name: Run quick tests
@@ -71,9 +71,9 @@ jobs:
         python -c "
         try:
             import tkinter
-            print('✓ tkinter available')
+            print('OK tkinter available')
         except ImportError:
-            print('⚠ tkinter not available on this system')
+            print('WARNING tkinter not available on this system')
         "
       continue-on-error: true
     
@@ -83,13 +83,13 @@ jobs:
         python -c "
         try:
             import tkinter
-            print('✓ tkinter available')
+            print('OK tkinter available')
             # Test GUI creation without showing window
             import sys; sys.path.insert(0, 'src')
             import human_typer_gui
-            print('✓ GUI module imports successfully')
+            print('OK GUI module imports successfully')
         except Exception as e:
-            print(f'⚠ GUI test skipped: {e}')
+            print(f'WARNING GUI test skipped: {e}')
         "
       continue-on-error: true
 
@@ -120,11 +120,11 @@ jobs:
         $executables = Get-ChildItem "dist" -Filter "*.exe"
         if ($executables.Count -gt 0) {
           foreach ($exe in $executables) {
-            Write-Host "✓ Executable built: $($exe.Name)"
+            Write-Host "OK Executable built: $($exe.Name)"
             $size = $exe.Length / 1MB
             Write-Host "  Size: $([math]::Round($size, 2)) MB"
           }
         } else {
-          Write-Host "✗ No executables found"
+          Write-Host "ERROR No executables found"
           exit 1
         }
