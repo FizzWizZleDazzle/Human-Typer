@@ -98,7 +98,7 @@ python src/human_typer_gui.py
 ```
 
 ### System Requirements
-- Python 3.6 or higher
+- Python 3.9 or higher
 - Windows, macOS, or Linux
 - For keyboard simulation: `pynput` library
 
