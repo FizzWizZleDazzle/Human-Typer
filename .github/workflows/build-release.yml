@@ -1,0 +1,254 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag (e.g., v2.0.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install PyInstaller
+    
+    - name: Build Windows executables
+      run: |
+        python scripts/build.py
+    
+    - name: Create Windows release package
+      run: |
+        $version = "${{ github.ref_name }}"
+        $packageName = "HumanTyper-Windows-$version"
+        New-Item -ItemType Directory -Force -Path "release/$packageName"
+        
+        # Copy executables
+        Get-ChildItem "dist/HumanTyper*Windows*" | Copy-Item -Destination "release/$packageName/"
+        
+        # Copy documentation
+        Copy-Item "README.md" "release/$packageName/" -ErrorAction SilentlyContinue
+        Copy-Item "LICENSE" "release/$packageName/" -ErrorAction SilentlyContinue
+        Copy-Item "CHANGELOG.md" "release/$packageName/" -ErrorAction SilentlyContinue
+        Copy-Item "scripts/examples.py" "release/$packageName/examples.py" -ErrorAction SilentlyContinue
+        
+        # Create instruction file
+        @"
+        Human Typer Mimicker - Windows Release
+        
+        How to Use:
+        1. Run HumanTyperGUI-Windows.exe for the graphical interface
+        2. Or run HumanTyper-Windows.exe for command-line usage
+        3. Press F6 to start/stop typing when using keyboard simulation
+        
+        No installation required!
+        "@  | Out-File -FilePath "release/$packageName/HOW-TO-USE.txt" -Encoding UTF8
+        
+        # Create ZIP
+        Compress-Archive -Path "release/$packageName/*" -DestinationPath "$packageName.zip"
+    
+    - name: Upload Windows artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: HumanTyper-Windows-${{ github.ref_name }}
+        path: HumanTyper-Windows-*.zip
+
+  build-macos:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install PyInstaller
+    
+    - name: Build macOS executables
+      run: |
+        python scripts/build.py
+    
+    - name: Create macOS release package
+      run: |
+        version="${{ github.ref_name }}"
+        packageName="HumanTyper-macOS-$version"
+        mkdir -p "release/$packageName"
+        
+        # Copy executables
+        cp dist/HumanTyper*Darwin* "release/$packageName/" 2>/dev/null || true
+        
+        # Copy documentation
+        cp README.md LICENSE CHANGELOG.md "release/$packageName/" 2>/dev/null || true
+        cp scripts/examples.py "release/$packageName/examples.py" 2>/dev/null || true
+        
+        # Create instruction file
+        cat > "release/$packageName/HOW-TO-USE.txt" << EOF
+        Human Typer Mimicker - macOS Release
+        
+        How to Use:
+        1. Run ./HumanTyperGUI-Darwin for the graphical interface
+        2. Or run ./HumanTyper-Darwin for command-line usage  
+        3. Press F6 to start/stop typing when using keyboard simulation
+        4. You may need to grant accessibility permissions in System Preferences
+        
+        No installation required!
+        EOF
+        
+        # Make executables executable
+        chmod +x "release/$packageName"/HumanTyper*
+        
+        # Create ZIP
+        cd release && zip -r "../$packageName.zip" "$packageName"
+    
+    - name: Upload macOS artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: HumanTyper-macOS-${{ github.ref_name }}
+        path: HumanTyper-macOS-*.zip
+
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+    
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y python3-tk xvfb
+    
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install PyInstaller
+    
+    - name: Build Linux executables
+      run: |
+        xvfb-run -a python scripts/build.py
+    
+    - name: Create Linux release package
+      run: |
+        version="${{ github.ref_name }}"
+        packageName="HumanTyper-Linux-$version"
+        mkdir -p "release/$packageName"
+        
+        # Copy executables
+        cp dist/HumanTyper*Linux* "release/$packageName/" 2>/dev/null || true
+        
+        # Copy documentation
+        cp README.md LICENSE CHANGELOG.md "release/$packageName/" 2>/dev/null || true
+        cp scripts/examples.py "release/$packageName/examples.py" 2>/dev/null || true
+        
+        # Create instruction file
+        cat > "release/$packageName/HOW-TO-USE.txt" << EOF
+        Human Typer Mimicker - Linux Release
+        
+        How to Use:
+        1. Run ./HumanTyperGUI-Linux for the graphical interface
+        2. Or run ./HumanTyper-Linux for command-line usage
+        3. Press F6 to start/stop typing when using keyboard simulation
+        4. You may need appropriate permissions for keyboard simulation
+        
+        No installation required!
+        EOF
+        
+        # Make executables executable
+        chmod +x "release/$packageName"/HumanTyper*
+        
+        # Create ZIP
+        cd release && zip -r "../$packageName.zip" "$packageName"
+    
+    - name: Upload Linux artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: HumanTyper-Linux-${{ github.ref_name }}
+        path: HumanTyper-Linux-*.zip
+
+  create-release:
+    needs: [build-windows, build-macos, build-linux]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Download all artifacts
+      uses: actions/download-artifact@v3
+      with:
+        path: artifacts
+    
+    - name: Prepare release assets
+      run: |
+        mkdir release-assets
+        find artifacts -name "*.zip" -exec cp {} release-assets/ \;
+        ls -la release-assets/
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: release-assets/*.zip
+        body: |
+          ## Human Typer Mimicker ${{ github.ref_name }}
+          
+          ### 🌟 New Features
+          - **F6 Hotkey Control**: Press F6 to start/stop typing instantly
+          - **Cross-Platform Support**: Native executables for Windows, macOS, and Linux
+          - **Improved Project Structure**: Better organization and maintainability
+          
+          ### 📦 Downloads
+          Choose the appropriate executable for your platform:
+          - **Windows**: `HumanTyper-Windows-*.zip`
+          - **macOS**: `HumanTyper-macOS-*.zip`  
+          - **Linux**: `HumanTyper-Linux-*.zip`
+          
+          ### 🚀 Quick Start
+          1. Download the appropriate file for your platform
+          2. Extract the archive
+          3. Run the GUI executable for the easiest experience
+          4. Press F6 to start/stop typing
+          
+          ### 🔧 What's Included
+          - GUI and CLI applications
+          - Comprehensive documentation
+          - Example usage scripts
+          - No installation required!
+          
+          See the [README](https://github.com/${{ github.repository }}) for detailed instructions.
+        
+        generate_release_notes: false
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

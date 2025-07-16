@@ -1,0 +1,19 @@
+# Human Typer Mimicker - Requirements
+# Required for keyboard simulation
+pynput>=1.8.1
+
+# Required for building executable
+pyinstaller>=5.0
+
+# Python version: 3.6+
+# Standard library modules used:
+# - tkinter (GUI - included with Python)
+# - threading (for GUI responsiveness)
+# - random
+# - time
+# - sys
+# - typing
+
+# For development/testing (optional):
+# pytest>=6.0.0
+# mypy>=0.910
