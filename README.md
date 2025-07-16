@@ -1,10 +1,10 @@
 # Human Typer Mimicker
 
-![Python](https://img.shields.io/badge/python-3.6+-blue.svg)
+![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Platform](https://img.shields.io/badge/platform-windows%20%7C%20macos%20%7C%20linux-lightgrey.svg)
-![Build](https://img.shields.io/github/actions/workflow/status/yourusername/human-typer-mimicker/ci.yml?branch=main)
-![Release](https://img.shields.io/github/v/release/yourusername/human-typer-mimicker)
+![Build](https://img.shields.io/github/actions/workflow/status/FizzWizzleDazzle/Human-Typer/ci.yml?branch=main)
+![Release](https://img.shields.io/github/v/release/FizzWizzleDazzle/Human-Typer)
 
 A sophisticated Python application that simulates realistic human typing behavior with natural mistakes, speed fluctuations, and corrections. Features **F6 hotkey control** for instant start/stop functionality. Perfect for testing applications, creating demonstrations, and automating workflows that require human-like text input.
 
