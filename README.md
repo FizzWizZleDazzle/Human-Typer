@@ -42,12 +42,8 @@ A sophisticated Python application that simulates realistic human typing behavio
 ## 📸 Screenshots
 
 ### GUI Interface
-![GUI Screenshot](docs/images/gui-screenshot.png)
+![GUI Screenshot](/.github/typer-gui.png)
 *User-friendly interface with configurable settings and real-time progress*
-
-### Typing Demonstration
-![Typing Demo](docs/images/typing-demo.gif)
-*Realistic human typing with natural errors and corrections*
 
 ## 🎯 Use Cases
 
@@ -84,26 +80,21 @@ Test applications across different platforms:
 ## 📥 Installation
 
 ### Option 1: Download Executable (Recommended)
-1. Go to [Releases](https://github.com/yourusername/human-typer-mimicker/releases)
+1. Go to [Releases](https://github.com/FizzWizzleDazzle/Human-Typer/releases)
 2. Download `HumanTyperGUI.exe`
 3. Run directly - no installation required!
 
 ### Option 2: Install from Source
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/human-typer-mimicker.git
+git clone https://github.com/FizzWizzleDazzle/Human-Typer.git
 cd human-typer-mimicker
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Run the application
-python human_typer_gui.py
-```
-
-### Option 3: Install via pip (Coming Soon)
-```bash
-pip install human-typer-mimicker
+python src/human_typer_gui.py
 ```
 
 ### System Requirements
@@ -119,15 +110,15 @@ On some systems, you may need to grant accessibility permissions:
 ## 🚀 Quick Start
 
 ### Option 1: Download Executable (Easiest)
-1. Go to [Releases](https://github.com/yourusername/human-typer/releases)
+1. Go to [Releases](https://github.com/FizzWizzleDazzle/Human-Typer/releases)
 2. Download the executable for your platform
 3. Run it directly - no installation needed!
 
 ### Option 2: Run from Source
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/human-typer.git
-cd human-typer
+git clone https://github.com/FizzWizzleDazzle/Human-Typer.git
+cd Human-Typer
 
 # Install dependencies
 pip install -r requirements.txt
@@ -465,9 +456,9 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 ## 📊 Project Stats
 
-![Lines of Code](https://img.shields.io/tokei/lines/github/yourusername/human-typer)
-![Code Size](https://img.shields.io/github/languages/code-size/yourusername/human-typer)
-![Repository Size](https://img.shields.io/github/repo-size/yourusername/human-typer)
+![Lines of Code](https://img.shields.io/tokei/lines/github/FizzWizzleDazzle/Human-Typer)
+![Code Size](https://img.shields.io/github/languages/code-size/FizzWizzleDazzle/Human-Typer)
+![Repository Size](https://img.shields.io/github/repo-size/FizzWizzleDazzle/Human-Typer)
 
 ---
 

@@ -43,7 +43,7 @@ Various usage patterns and configuration examples for developers.
 ### Installation
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/human-typer.git
+git clone https://github.com/FizzWizzleDazzle/Human-Typer.git
 cd human-typer
 
 # Create virtual environment

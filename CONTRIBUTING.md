@@ -5,7 +5,7 @@ Thank you for your interest in contributing to the Human Typer Mimicker project!
 ## 🚀 Quick Start
 
 1. Fork the repository
-2. Clone your fork: `git clone https://github.com/yourusername/human-typer-mimicker.git`
+2. Clone your fork: `git clone https://github.com/FizzWizzleDazzle/Human-Typer.git`
 3. Create a virtual environment: `python -m venv .venv`
 4. Activate it: `.venv\Scripts\activate` (Windows) or `source .venv/bin/activate` (Unix)
 5. Install dependencies: `pip install -r requirements.txt`
@@ -23,7 +23,7 @@ Thank you for your interest in contributing to the Human Typer Mimicker project!
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/human-typer-mimicker.git
+git clone https://github.com/FizzWizzleDazzle/Human-Typer.git
 cd human-typer-mimicker
 
 # Create and activate virtual environment

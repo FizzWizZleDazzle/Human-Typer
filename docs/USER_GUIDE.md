@@ -21,7 +21,7 @@ Human Typer is a tool that automatically types text for you, but makes it look l
 ## Getting Started
 
 ### Option 1: Download the Executable (Easiest)
-1. Go to the [Releases page](https://github.com/yourusername/human-typer/releases)
+1. Go to the [Releases page](https://github.com/FizzWizzleDazzle/Human-Typer/releases)
 2. Download `HumanTyperGUI.exe` from the latest release
 3. Double-click to run (no installation required!)
 
@@ -200,7 +200,7 @@ The application includes several built-in sample texts:
 ### If You Need Support
 1. **Check this guide**: Most questions are answered here
 2. **Try the troubleshooting section**: Common issues and solutions
-3. **Visit the GitHub repository**: https://github.com/yourusername/human-typer
+3. **Visit the GitHub repository**: https://github.com/FizzWizzleDazzle/Human-Typer
 4. **File an issue**: Use GitHub issues for bug reports and feature requests
 
 ### Reporting Problems
