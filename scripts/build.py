@@ -33,10 +33,10 @@ def install_dependencies():
     
     try:
         subprocess.check_call([sys.executable, '-m', 'pip', 'install', '-r', 'requirements.txt'])
-        print("✓ Installed dependencies from requirements.txt")
+        print("OK Installed dependencies from requirements.txt")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"✗ Failed to install dependencies: {e}")
+        print(f"ERROR Failed to install dependencies: {e}")
         return False
 
 
@@ -48,7 +48,7 @@ def clean_build_dirs():
     for dir_name in dirs_to_clean:
         if os.path.exists(dir_name):
             shutil.rmtree(dir_name)
-            print(f"✓ Removed {dir_name}")
+            print(f"OK Removed {dir_name}")
 
 
 def build_gui_executable(platform_info):
@@ -84,10 +84,10 @@ def build_gui_executable(platform_info):
     
     try:
         subprocess.check_call(build_cmd)
-        print(f"✓ Built GUI executable: {exe_name}")
+        print(f"OK Built GUI executable: {exe_name}")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"✗ Failed to build GUI executable: {e}")
+        print(f"ERROR Failed to build GUI executable: {e}")
         return False
 
 
@@ -114,10 +114,10 @@ def build_cli_executable(platform_info):
     
     try:
         subprocess.check_call(build_cmd)
-        print(f"✓ Built CLI executable: {exe_name}")
+        print(f"OK Built CLI executable: {exe_name}")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"✗ Failed to build CLI executable: {e}")
+        print(f"ERROR Failed to build CLI executable: {e}")
         return False
 
 
@@ -146,7 +146,7 @@ def create_distribution_package(platform_info):
     if os.path.exists('scripts/examples.py'):
         shutil.copy('scripts/examples.py', f'{dist_dir}/examples.py')
     
-    print(f"✓ Created distribution package: {dist_dir}")
+    print(f"OK Created distribution package: {dist_dir}")
     return dist_dir
 
 
@@ -191,8 +191,8 @@ def main():
     print("Build Summary")
     print("=" * 60)
     print(f"Platform: {platform_info['system']} {platform_info['architecture']}")
-    print(f"GUI Build: {'✓ Success' if gui_success else '✗ Failed'}")
-    print(f"CLI Build: {'✓ Success' if cli_success else '✗ Failed'}")
+    print(f"GUI Build: {'SUCCESS' if gui_success else 'FAILED'}")
+    print(f"CLI Build: {'SUCCESS' if cli_success else 'FAILED'}")
     print(f"Distribution: {dist_dir}")
     print()
     
