@@ -222,16 +222,11 @@ jobs:
         body: |
           ## Human Typer Mimicker ${{ github.ref_name }}
           
-          ### 🌟 New Features
-          - **F6 Hotkey Control**: Press F6 to start/stop typing instantly
-          - **Cross-Platform Support**: Native executables for Windows, macOS, and Linux
-          - **Improved Project Structure**: Better organization and maintainability
-          
           ### 📦 Downloads
           Choose the appropriate executable for your platform:
-          - **Windows**: `HumanTyper-Windows-*.zip`
-          - **macOS**: `HumanTyper-macOS-*.zip`  
-          - **Linux**: `HumanTyper-Linux-*.zip`
+          - **Windows**: `HumanTyper-Windows-${{ github.ref_name }}.zip`
+          - **macOS**: `HumanTyper-macOS-${{ github.ref_name }}.zip`  
+          - **Linux**: `HumanTyper-Linux-${{ github.ref_name }}.zip`
           
           ### 🚀 Quick Start
           1. Download the appropriate file for your platform
@@ -245,7 +240,10 @@ jobs:
           - Example usage scripts
           - No installation required!
           
-          See the [README](https://github.com/${{ github.repository }}) for detailed instructions.
+          ### 📋 Release Notes
+          See the [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for detailed release notes and changes.
+          
+          For detailed instructions, visit the [README](https://github.com/${{ github.repository }}).
         
         generate_release_notes: false
         draft: false
