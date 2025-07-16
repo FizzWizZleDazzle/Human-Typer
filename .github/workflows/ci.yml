@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches: [ main, develop ]
-    changed_files:
+    paths:
       - 'scripts/**'
       - 'src/**'
       - '.github/workflows/ci.yml'
