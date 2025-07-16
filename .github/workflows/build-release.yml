@@ -67,7 +67,7 @@ jobs:
         Compress-Archive -Path "release/$packageName/*" -DestinationPath "$packageName.zip"
     
     - name: Upload Windows artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: HumanTyper-Windows-${{ github.ref_name }}
         path: HumanTyper-Windows-*.zip
@@ -126,7 +126,7 @@ jobs:
         cd release && zip -r "../$packageName.zip" "$packageName"
     
     - name: Upload macOS artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: HumanTyper-macOS-${{ github.ref_name }}
         path: HumanTyper-macOS-*.zip
@@ -190,7 +190,7 @@ jobs:
         cd release && zip -r "../$packageName.zip" "$packageName"
     
     - name: Upload Linux artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: HumanTyper-Linux-${{ github.ref_name }}
         path: HumanTyper-Linux-*.zip
@@ -205,7 +205,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Download all artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         path: artifacts
     
