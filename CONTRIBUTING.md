@@ -16,7 +16,7 @@ Thank you for your interest in contributing to the Human Typer Mimicker project!
 ## 📋 Development Setup
 
 ### Prerequisites
-- Python 3.8 or higher
+- Python 3.9 or higher
 - Git
 - Virtual environment tool
 
@@ -157,7 +157,7 @@ def calculate_typing_delay(self, base_speed: int, variance: int) -> float:
 5. Test on different operating systems
 
 ### Automated Testing
-- CI runs on multiple Python versions (3.8-3.12)
+- CI runs on multiple Python versions (3.9-3.12)
 - Cross-platform testing (Windows, Ubuntu, macOS)
 - Import and basic functionality tests
 - Build verification tests

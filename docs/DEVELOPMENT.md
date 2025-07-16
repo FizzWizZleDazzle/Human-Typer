@@ -119,7 +119,7 @@ pyinstaller --onefile --windowed --name "HumanTyperGUI" --add-data "human_typer.
 ### GitHub Actions
 Two workflows are configured:
 
-1. **CI Pipeline** (`ci.yml`): Tests across Python 3.8-3.12 on Windows, macOS, Linux
+1. **CI Pipeline** (`ci.yml`): Tests across Python 3.9-3.12 on Windows, macOS, Linux
 2. **Release Pipeline** (`build-release.yml`): Automatic executable builds and GitHub releases
 
 ## Debugging Tips

@@ -136,7 +136,7 @@ human-typer-mimicker/
 - **Method**: GitHub repository
 - **Format**: Git clone or ZIP download
 - **Target**: Developers, source code users
-- **Requirements**: Python 3.8+, pip
+- **Requirements**: Python 3.9+, pip
 
 ### Binary Distribution
 - **Method**: GitHub Releases
